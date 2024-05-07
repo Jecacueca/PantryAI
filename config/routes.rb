@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   # root "posts#index"
   # Each user will have one pantry
   resources :pantries, only: [:create]
+  resources :items, only: [:new, :create]
   get "my_pantry" => "pantries#show", as: :pantry
 end
