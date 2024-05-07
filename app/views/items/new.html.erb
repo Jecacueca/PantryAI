@@ -8,3 +8,4 @@
 
   <%= hidden_field_tag :previous_page, request.referer %>
 <% end %>
+<%= @item.errors.messages if @item.errors.any?  %>

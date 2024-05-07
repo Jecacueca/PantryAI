@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
     elsif params[:previous_page].include? "/shopping_list"
       @item.shopping_list = current_user.shopping_list
     end
-    raise
     if @item.save
       redirect_to pantry_path
     else
