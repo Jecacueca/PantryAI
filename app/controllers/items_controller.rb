@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :find_item, only: [:edit, :update]
+  before_action :find_item, only: [:edit, :update, :destroy]
 
   def new
     @item = Item.new
@@ -28,6 +28,11 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @item.destroy
+    redirect_to pantry_path
   end
 
   private
