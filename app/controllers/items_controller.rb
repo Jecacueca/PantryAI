@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
       @item.shopping_list = current_user.shopping_list
     end
     if @item.save
-      redirect_to pantry_path
+      redirect_to params[:previous_page]
     else
       render :new
     end

@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   # Each user will have one pantry
+  get "my_pantry" => "pantries#show", as: :pantry
+  get "shopping_list" => "shopping_lists#show", as: :shopping_list
+  
   resources :pantries, only: [:create]
   resources :items, only: [:new, :create, :edit, :update, :destroy]
-  get "my_pantry" => "pantries#show", as: :pantry
 end
