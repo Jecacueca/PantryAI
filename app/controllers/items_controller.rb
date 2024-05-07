@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :find_item, only: [:edit, :update]
+
   def new
     @item = Item.new
   end
@@ -17,7 +19,22 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to pantry_path
+    else
+      render :edit
+    end
+  end
+
   private
+
+  def find_item
+    @item = Item.find(params[:id])
+  end
 
   def item_params
     params.require(:item).permit(:name, :description, :quantity, :threshold)

@@ -1,2 +1,8 @@
 <h1>Pantry show</h1>
 <%= link_to "+ Item", new_item_path %>
+ <p><%= @pantry.items.count %> items</p>
+<ul>
+  <% @pantry.items.each do |item| %>
+    <li><%= item.name %> || <%= link_to "edit", edit_item_path(item) %></li>
+  <% end %>
+</ul>
