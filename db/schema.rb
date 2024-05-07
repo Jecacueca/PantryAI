@@ -10,9 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_07_122034) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_07_130548) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "quantity"
+    t.integer "threshold"
+    t.bigint "pantry_id"
+    t.bigint "shopping_list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pantry_id"], name: "index_items_on_pantry_id"
+    t.index ["shopping_list_id"], name: "index_items_on_shopping_list_id"
+  end
+
+  create_table "pantries", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_pantries_on_user_id"
+  end
+
+  create_table "shopping_lists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +49,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_122034) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "items", "pantries"
+  add_foreign_key "items", "shopping_lists"
+  add_foreign_key "pantries", "users"
 end
