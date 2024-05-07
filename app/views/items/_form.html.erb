@@ -1,0 +1,10 @@
+<%= simple_form_for @item do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :quantity %>
+  <%= f.input :threshold %>
+  <%= f.button :submit %>
+
+  <%= hidden_field_tag :previous_page, request.referer %>
+<% end %>
+<%= @item.errors.messages if @item.errors.any?  %>
