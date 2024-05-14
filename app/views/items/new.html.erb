@@ -1,1 +1,15 @@
-<%= render "form", item: @item %>
+<% if request.referer.include? "/shopping_list" %>
+  <div class="shopping-new-container" data-controller="shopping-list-form">
+    <%= simple_form_for @item, data: { shopping_list_form_target: "existingItems"} do |f| %>
+      <%= f.input :id, label: "Select an existing item:", collection: @existing_items, label_method: :name, value_method: :id, prompt: "Select an item" %>
+      <%= hidden_field_tag :previous_page, request.referer %>
+      <%= f.submit %>
+    <% end %>
+    <button class="btn btn-primary" data-action="shopping-list-form#revealForm" data-shopping-list-form-target="button">New item</button>
+    <div class="d-none" data-shopping-list-form-target="newForm">
+      <%= render "form", item: @item%>
+    </div>
+  </div>
+<% else %>
+  <%= render "form", item: @item %>
+<% end %>
