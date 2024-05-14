@@ -10,3 +10,16 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+// Your custom CSS variables
+$primary-color: #EAE0D7;
+$secondary-color: #374043;
+$accent-primary: #E06C00;
+$accent-secondary: #F57600;
+$accent-tertiary: #FFAB5C;
+
+.accent-gradient {
+  background: rgb(255,186,122);
+  background: linear-gradient(90deg, rgba(255,186,122,1) 0%, rgba(245,118,0,1) 100%);
+}
+ 
