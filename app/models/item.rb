@@ -13,4 +13,5 @@ class Item < ApplicationRecord
       errors.add(:base, "must be associated to a pantry or shopping list")
     end
   end
+
 end

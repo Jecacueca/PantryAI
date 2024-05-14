@@ -3,10 +3,6 @@
  <p><%= @pantry.items.count %> items</p>
 <ul>
   <% @pantry.items.each do |item| %>
-    <li><%= item.name %> || <%= link_to "edit", edit_item_path(item) %> ||
-    <%= link_to "delete",
-      item_path(item),
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure? Item will also be removed from the shopping list"}
-    %></li>
+    <%= render "shared/item_card", item: item %>
   <% end %>
 </ul>
