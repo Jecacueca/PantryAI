@@ -5,7 +5,7 @@
       <%= hidden_field_tag :previous_page, request.referer %>
       <%= f.submit %>
     <% end %>
-    <button class="btn btn-primary" data-action="shopping-list-form#revealForm" data-shopping-list-form-target="button">New item</button>
+    <button class="btn accent-gradient" data-action="shopping-list-form#revealForm" data-shopping-list-form-target="button">New item</button>
     <div class="d-none" data-shopping-list-form-target="newForm">
       <%= render "form", item: @item%>
     </div>
