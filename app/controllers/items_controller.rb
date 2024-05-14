@@ -32,7 +32,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
+    if (request.referer.include? "/shopping_list") && @item.pantry
+      @item.shopping_list = nil
+      @item.save
+    else
+      @item.destroy
+    end
     redirect_to request.referer
   end
 
@@ -57,4 +62,12 @@ class ItemsController < ApplicationController
   def below_threshold?
     @item.shopping_list = current_user.shopping_list if @item.quantity <= @item.threshold
   end
+
+  # def remove_from_list
+  #   if request.referer.include? "/shopping_list"
+  #     @item.shopping_list = nil
+  #   else
+  #     @§item.pantry = nil
+  #   end
+  # end
 end
