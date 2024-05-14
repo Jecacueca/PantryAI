@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get "my_pantry", to: "pantries#show", as: :pantry
   get "shopping_list", to: "shopping_lists#show", as: :shopping_list
   patch "items/:id/add_to_list", to: "items#add_to_list", as: :add_to_list
+  get "/profile", to: "pages#profile"
+
 
   resources :pantries, only: [:create]
   resources :items, only: [:new, :create, :edit, :update, :destroy]
