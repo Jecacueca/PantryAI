@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to pantry_path
+      redirect_to params[:previous_page]
     else
       render :edit
     end
@@ -32,11 +32,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    if request.referer.include? "/my_pantry"
-      redirect_to(pantry_path)
-    elsif request.referer.include? "/shopping_list"
-      redirect_to(shopping_list_path)
-    end
+    redirect_to request.referer
   end
 
   private
