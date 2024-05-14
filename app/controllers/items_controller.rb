@@ -32,7 +32,11 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to pantry_path
+    if request.referer.include? "/my_pantry"
+      redirect_to(pantry_path)
+    elsif request.referer.include? "/shopping_list"
+      redirect_to(shopping_list_path)
+    end
   end
 
   private
