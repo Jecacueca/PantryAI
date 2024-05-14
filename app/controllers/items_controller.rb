@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :find_item, only: [:edit, :update, :destroy, :add_to_list]
 
   def new
+    @existing_items = current_user.pantry.items.where(shopping_list: nil)
     @item = Item.new
   end
 
@@ -11,6 +12,9 @@ class ItemsController < ApplicationController
       @item.pantry = current_user.pantry
       below_threshold?
     elsif params[:previous_page].include? "/shopping_list"
+      if params[:item][:id]
+        @item = Item.find(params[:item][:id])
+      end
       @item.shopping_list = current_user.shopping_list
     end
     if @item.save
